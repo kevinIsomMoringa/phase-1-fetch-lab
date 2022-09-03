@@ -1,6 +1,14 @@
-function fetchBooks() {
+apiURL='https://anapioficeandfire.com/api/books'
+
+function fetchBooks(url=apiURL) {
   // To pass the tests, don't forget to return your fetch!
-  
+  fetch(url)
+  .then((resp) => resp.json())
+  .then((json) => {
+    //json.forEach(x => console.log(x.name))
+    renderBooks(json)
+    return json;
+  });
 }
 
 function renderBooks(books) {
@@ -12,6 +20,4 @@ function renderBooks(books) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  fetchBooks();
-});
+document.addEventListener('DOMContentLoaded', fetchBooks(event));
